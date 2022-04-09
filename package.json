@@ -1,0 +1,25 @@
+{
+  "name": "companion-worker-modules",
+  "version": "1.0.0",
+  "description": "Generate a JSON files from the current module base used in companion.",
+  "main": "./build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitfocus/companion-worker-modules.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitfocus/companion-worker-modules/issues"
+  },
+  "homepage": "https://github.com/bitfocus/companion-worker-modules#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "typescript": "^4.6.3"
+  }
+}
