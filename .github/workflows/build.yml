@@ -18,3 +18,4 @@ jobs:
                   username: ${{ secrets.GHCR_USER }}
                   password: ${{ secrets.GHCR_SECRET }}
                   tag_semver: true
+                  tags: latest
