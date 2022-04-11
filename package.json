@@ -22,6 +22,22 @@
   "bugs": {
     "url": "https://github.com/bitfocus/companion-worker-modules/issues"
   },
+  "release-it": {
+    "github": {
+      "release": false
+    },
+    "git": {
+      "commitMessage": "Release v${version}",
+      "requireBranch": [
+        "main",
+        "master"
+      ],
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": false
+    }
+  },
   "homepage": "https://github.com/bitfocus/companion-worker-modules#readme",
   "devDependencies": {
     "@types/git-clone": "^0.2.0",
