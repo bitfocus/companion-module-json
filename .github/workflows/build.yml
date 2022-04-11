@@ -1,0 +1,21 @@
+name: Publish docker image
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+    build_and_push:
+        runs-on: ubuntu-latest
+        name: Build and push
+        steps:
+            - uses: actions/checkout@master
+            - name: Publish to Registry
+              uses: elgohr/Publish-Docker-Github-Action@master
+              with:
+                  name: companion-worker-modules
+                  registry: ghcr.io/bitfocus
+                  username: ${{ secrets.GHCR_USER }}
+                  password: ${{ secrets.GHCR_SECRET }}
+                  tag_semver: true
+                  tags: latest
