@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "ts-node-dev --respawn -- src/main.ts",
-		"docker:build": "docker build -t ghcr.io/bitfocus/companion-worker-modules .",
+    "docker:build": "docker build -t ghcr.io/bitfocus/companion-worker-modules .",
     "docker:run": "docker run -it --rm ghcr.io/bitfocus/companion-worker-modules",
-    "docker:push": "docker push ghcr.io/bitfocus/companion-worker-modules"
+    "docker:push": "docker push ghcr.io/bitfocus/companion-worker-modules",
+    "k8s:apply": "kubectl -n bitfocus apply -f kubernetes/cronjob.yml"
   },
   "repository": {
     "type": "git",

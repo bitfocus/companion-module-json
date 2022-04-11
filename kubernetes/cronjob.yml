@@ -3,6 +3,7 @@ kind: CronJob
 metadata:
   name: bitfocus-companion-worker-modules
 spec:
+  successfulJobsHistoryLimit: 1
   schedule: "0 1 * * *"
   jobTemplate:
     spec:
