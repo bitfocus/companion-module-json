@@ -4,6 +4,8 @@ import { exec, execSync } from "child_process";
 import axios from "axios";
 import os from "os";
 
+const pkg = require('../package.json');
+
 export interface CompanionModulesReport {
   generated_at: Date;
   generated_by: string;
@@ -35,7 +37,7 @@ let packages: {
 }[] = [];
 
 const main = async () => {
-  console.log("[1] Starting");
+  console.log("[1] Starting", pkg.version);
   
   // delete folder recursive tmp/companion if it exists
   if (fs.existsSync("tmp/companion")) {
