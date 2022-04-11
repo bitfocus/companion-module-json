@@ -10,7 +10,8 @@
     "docker:build": "docker build -t ghcr.io/bitfocus/companion-worker-modules .",
     "docker:run": "docker run -it --rm ghcr.io/bitfocus/companion-worker-modules",
     "docker:push": "docker push ghcr.io/bitfocus/companion-worker-modules",
-    "k8s:apply": "kubectl -n bitfocus apply -f kubernetes/cronjob.yml"
+    "k8s:apply": "kubectl -n bitfocus apply -f kubernetes/cronjob.yml",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
