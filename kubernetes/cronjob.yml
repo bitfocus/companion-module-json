@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bitfocus-companion-worker-modules
+spec:
+  schedule: "0 1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: bitfocus-companion-worker-modules
+              image: ghcr.io/bitfocus/companion-worker-modules:latest
+              imagePullPolicy: Always
+              env:
+                - name: MODULE_CRON_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: bitfocus-companion-worker-modules
+                      key: api-secret
+                      optional: false
+          restartPolicy: OnFailure

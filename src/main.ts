@@ -58,7 +58,7 @@ const main = async () => {
   // Run yarn in the companion folder
   console.log("[3] Running yarn");
   try {
-    execSync("yarn", { cwd: "./tmp/companion" });
+    execSync("yarn --frozen-lockfile --prod", { cwd: "./tmp/companion" });
   } catch (err) {
     console.log("[3] Error running yarn");
     console.log(err);
