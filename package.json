@@ -1,5 +1,6 @@
 {
   "name": "companion-worker-modules",
+  "private": true,
   "version": "1.0.4",
   "description": "Generate a JSON files from the current module base used in companion.",
   "main": "./build/index.js",
@@ -19,7 +20,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bitfocus/companion-worker-modules/issues"
   },
@@ -45,7 +46,7 @@
     "@types/node": "^18.18.14",
     "nodemon": "^3.0.1",
     "prettier": "^3.1.0",
-    "release-it": "^14.14.2",
+    "release-it": "^16.3.0",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "~5.2"
