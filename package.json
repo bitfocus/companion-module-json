@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "rimraf build && tsc",
     "dev": "DEBUG_WRITE_TO_FILE=1 ts-node-dev --respawn -- src/main.ts",
     "docker:build": "docker build -t ghcr.io/bitfocus/companion-worker-modules .",
     "docker:run": "docker run -it --rm ghcr.io/bitfocus/companion-worker-modules",
@@ -41,12 +41,14 @@
   },
   "homepage": "https://github.com/bitfocus/companion-worker-modules#readme",
   "devDependencies": {
-    "@types/node": "^17.0.23",
-    "prettier": "^2.6.2",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/node": "^18.18.14",
+    "prettier": "^3.1.0",
     "release-it": "^14.14.2",
+    "rimraf": "^5.0.5",
     "ts-node-dev": "^1.1.8",
     "tsc-watch": "^5.0.3",
-    "typescript": "^4.6.3"
+    "typescript": "^5.2.3"
   },
   "dependencies": {
     "@companion-module/base": "^1.6.0",
