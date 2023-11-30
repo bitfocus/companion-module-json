@@ -78,9 +78,9 @@ const main = async () => {
 
 			packages.push({
 				version: moduleManifest.version,
-				name: moduleManifest.name,
+				name: moduleManifest.id,
 				url: moduleManifest.repository,
-				help_url: `https://github.com/bitfocus/companion-bundled-modules/blob/main/${moduleManifest.name}/companion/HELP.md`,
+				help_url: `https://github.com/bitfocus/companion-bundled-modules/blob/main/${moduleManifest.id}/companion/HELP.md`,
 				api_version: moduleManifest.runtime.apiVersion,
 				keywords: moduleManifest.keywords,
 				manufacturer: moduleManifest.manufacturer,
