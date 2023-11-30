@@ -17,7 +17,6 @@
 
 import fs from 'fs'
 import { execSync } from 'child_process'
-import axios from 'axios'
 import os from 'os'
 import path from 'path'
 import type { ModuleManifest } from '@companion-module/base'
@@ -169,11 +168,15 @@ const main = async () => {
 			console.log('File written')
 		} else {
 			// Use axios to POST request output to https://api.bitfocus.io/v1/companion/modules
-			await axios.post('https://api.bitfocus.io/v1/webhooks/modules', output, {
+			await fetch('https://api.bitfocus.io/v1/webhooks/modules', {
+				method: 'POST',
+				body: JSON.stringify(output),
 				headers: {
+					'Content-Type': 'application/json',
 					secret: process.env.MODULE_CRON_SECRET || 'missing cron secret',
 				},
 			})
+
 			console.log('Data submitted')
 		}
 	} else {
