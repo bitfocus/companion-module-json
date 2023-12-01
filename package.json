@@ -46,7 +46,7 @@
     "@types/node": "^18.18.14",
     "nodemon": "^3.0.1",
     "prettier": "^3.1.0",
-    "release-it": "^16.3.0",
+    "release-it": "^17.0.0",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "~5.2"
