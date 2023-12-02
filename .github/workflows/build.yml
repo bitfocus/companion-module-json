@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and push production image
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v4
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: bitfocus/companion-worker-modules
           registry: ghcr.io/bitfocus
