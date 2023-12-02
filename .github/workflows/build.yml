@@ -12,7 +12,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v4
         with:
-          name: companion-worker-modules
+          name: bitfocus/companion-worker-modules
           registry: ghcr.io/bitfocus
           username: ${{ secrets.GHCR_USER }}
           password: ${{ secrets.GHCR_SECRET }}
