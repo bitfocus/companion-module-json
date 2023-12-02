@@ -34,7 +34,8 @@ export interface CompanionModule {
 	// path: string
 	name: string
 	url: string
-	help_url: string // New
+	help_url: string // Newer
+	help_link: string // New
 	api_version: string
 	keywords: string[]
 	manufacturer: string[] | string
@@ -125,12 +126,12 @@ const main = async () => {
 					let sub_package_json: any = {}
 					try {
 						sub_package_json = JSON.parse(
-							fs.readFileSync('./tmp/companion/module-legacy/node_modules/' + key + '/package.json', 'utf8')
+							fs.readFileSync('./tmp/companion/module-legacy/node_modules/' + key + '/package.json', 'utf8'),
 						)
 					} catch (err) {
 						console.log(
 							'[5] Error reading sub package.json',
-							'./tmp/companion/module-legacy/node_modules/' + key + '/package.json'
+							'./tmp/companion/module-legacy/node_modules/' + key + '/package.json',
 						)
 						console.log(err)
 						errors.push(['sub-package.json', err])
@@ -138,7 +139,12 @@ const main = async () => {
 
 					packages.push({
 						version: package_json.dependencies[key].split(/#v?/)[1],
-						help_url: `https://github.com/bitfocus/${key}/blob/${package_json.dependencies[key].split(/#/)[1]}/HELP.md`,
+						help_link: `https://github.com/bitfocus/${key}/blob/${
+							package_json.dependencies[key].split(/#/)[1]
+						}/HELP.md`,
+						help_url: `https://raw.githubusercontent.com/bitfocus/${key}/${
+							package_json.dependencies[key].split(/#/)[1]
+						}/HELP.md`,
 						name: key.replace('companion-module-', ''),
 						url: package_json.dependencies[key],
 						api_version: sub_package_json.api_version,
