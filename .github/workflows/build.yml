@@ -2,7 +2,7 @@ name: Publish production docker image
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,13 +11,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
-        env:
-          SSH_KEY: ${{ secrets.GH_SSH_KEY }}
         with:
-          name: bitfocus/companion-worker-modules
-          registry: docker.oal.no
-          username: ${{ secrets.OALDOCKER_USERNAME }}
-          password: ${{ secrets.OALDOCKER_PASSWORD }}
-          workdir: ./
-          tag_semver: true
-          buildargs: SSH_KEY
+          name: companion-worker-modules
+          registry: ghcr.io/bitfocus
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_SECRET }}
+          tags: latest
