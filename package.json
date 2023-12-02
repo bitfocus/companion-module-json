@@ -1,7 +1,7 @@
 {
   "name": "companion-worker-modules",
   "private": true,
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Generate a JSON files from the current module base used in companion.",
   "main": "./build/index.js",
   "scripts": {
