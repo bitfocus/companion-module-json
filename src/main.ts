@@ -57,9 +57,13 @@ const main = async () => {
 		fs.rmSync('tmp/companion', { recursive: true })
 	}
 
-	console.log('[2] Cloning companion')
+	const companionBranch = process.env.COMPANION_BRANCH || 'main'
+
+	console.log(`[2] Cloning companion: ${companionBranch}`)
 	try {
-		execSync('git clone https://github.com/bitfocus/companion ./tmp/companion --recursive')
+		execSync(
+			`git clone https://github.com/bitfocus/companion ./tmp/companion --recursive --branch="${companionBranch}"`,
+		)
 	} catch (err) {
 		console.log('[2] Error cloning companion')
 		console.log(err)
