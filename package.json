@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.22",
   "description": "Generate a JSON files from the current module base used in companion.",
-  "main": "./build/index.js",
+  "main": "./build/main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build && tsc",
-    "dev": "DEBUG_WRITE_TO_FILE=1  nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/main.ts",
+    "dev": "DEBUG_WRITE_TO_FILE=1  tsx watch src/main.ts",
     "docker:build": "docker build -t ghcr.io/bitfocus/companion-worker-modules .",
     "docker:run": "docker run -it --rm ghcr.io/bitfocus/companion-worker-modules",
     "docker:push": "docker push ghcr.io/bitfocus/companion-worker-modules",
@@ -44,12 +45,11 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^18.19.50",
-    "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "release-it": "15.11.0",
     "rimraf": "^5.0.10",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.2.2"
+    "tsx": "^4.19.0",
+    "typescript": "~5.6.2"
   },
   "dependencies": {
     "@companion-module/base": "^1.10.0"

@@ -3,6 +3,8 @@
 	"include": ["src/*.ts"],
 	"compilerOptions": {
 		"outDir": "./build",
-		"importHelpers": false
+		"importHelpers": false,
+		"module": "Node16",
+		"moduleResolution": "Node16"
 	}
 }
