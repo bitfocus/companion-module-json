@@ -1,7 +1,7 @@
 /*
  * This file is part of the Companion project
  * Copyright (c) 2022 Bitfocus AS
- * Authors: William Viker <william@bitfocus.io>, Håkon Nessjøen <haakon@bitfocus.io>
+ * Authors: William Viker <william@bitfocus.io>, Håkon Nessjøen <haakon@bitfocus.io>, Julian Waller <git@julusian.co.uk>
  *
  * This program is free software.
  * You should have received a copy of the MIT licence as well as the Bitfocus
@@ -61,7 +61,9 @@ const companionBranch = process.env.COMPANION_BRANCH || 'main'
 
 console.log(`[2] Cloning companion: ${companionBranch}`)
 try {
-	execSync(`git clone https://github.com/bitfocus/companion ./tmp/companion --recursive --branch="${companionBranch}"`)
+	execSync(
+		`git clone https://github.com/bitfocus/companion ./tmp/companion --recursive --depth 1 --branch="${companionBranch}"`,
+	)
 } catch (err) {
 	console.log('[2] Error cloning companion')
 	console.log(err)
@@ -99,6 +101,42 @@ for (const moduleFolder of bundledModules) {
 	}
 }
 
+// Starting with 3.5, legacy modules now live in a subfolder of the bundled-modules repository
+const bundledLegacyModulesRoot = path.join(bundledModulesRoot, '_legacy')
+if (fs.existsSync(bundledLegacyModulesRoot)) {
+	console.log('[3.5] Reading legacy bundled modules')
+	const bundledLegacyModules = fs.readdirSync(bundledLegacyModulesRoot)
+	for (const moduleFolder of bundledLegacyModules) {
+		const moduleManifestPath = path.join(bundledLegacyModulesRoot, moduleFolder, 'companion/manifest.json')
+		try {
+			if (!fs.existsSync(moduleManifestPath)) continue
+
+			const moduleManifest: ModuleManifest = JSON.parse(fs.readFileSync(moduleManifestPath, 'utf8'))
+
+			const gitTag = `v${moduleManifest.version}` // TODO - could this be a git hash?
+
+			packages.push({
+				version: moduleManifest.version,
+				name: moduleManifest.id,
+				url: moduleManifest.repository,
+				help_link: `https://github.com/bitfocus/companion-module-${moduleManifest.id}/blob/${gitTag}/HELP.md`,
+				help_url: `https://raw.githubusercontent.com/bitfocus/companion-module-${moduleManifest.id}/${gitTag}/HELP.md`,
+				api_version: moduleManifest.runtime.apiVersion,
+				keywords: moduleManifest.keywords,
+				manufacturer: moduleManifest.manufacturer,
+				product: moduleManifest.products,
+				shortname: moduleManifest.shortname,
+				author: moduleManifest.maintainers.map((mt) => (mt.email ? `${mt.name} <${mt.email}>` : mt.name)),
+			})
+		} catch (err) {
+			console.log('[3] Error reading manifest.json', moduleManifestPath)
+			console.log(err)
+			errors.push(['manifest.json', err])
+		}
+	}
+}
+
+// Prior to 3.5, legacy modules used to live inside the companion repo
 if (fs.existsSync('./tmp/companion/module-legacy')) {
 	const addedPackages = new Set(packages.map((p) => p.name))
 
